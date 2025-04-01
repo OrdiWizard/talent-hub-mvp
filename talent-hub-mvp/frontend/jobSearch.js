@@ -1,0 +1,1 @@
+export default function JobSearch() { return <h1>Job Search</h1>; }
