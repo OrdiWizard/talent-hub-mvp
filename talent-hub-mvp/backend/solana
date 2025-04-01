@@ -1,0 +1,29 @@
+const anchor = require('@project-serum/anchor');
+const { PublicKey } = require('@solana/web3.js');
+
+const PROGRAM_ID = new PublicKey("Paste Your PROGRAM ID");
+
+const provider = anchor.AnchorProvider.local();
+anchor.setProvider(provider);
+
+const idl = require("./idl.json"); // Download contract IDL 
+const program = new anchor.Program(idl, PROGRAM_ID, provider);
+
+async function createEscrow(employer, freelancer, amount) {
+    const escrow = anchor.web3.Keypair.generate();
+    
+    await program.rpc.createEscrow(new anchor.BN(amount), {
+        accounts: {
+            escrow: escrow.publicKey,
+            employer: employer.publicKey,
+            freelancer: new PublicKey(freelancer),
+            systemProgram: anchor.web3.SystemProgram.programId,
+        },
+        signers: [employer, escrow],
+    });
+
+    console.log("Escrow created:", escrow.publicKey.toBase58());
+    return escrow.publicKey.toBase58();
+}
+
+module.exports = { createEscrow };
