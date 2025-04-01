@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 use anchor_lang::prelude::*;
 
-declare_id!("ВСТАВ_СВІЙ_PROGRAM_ID");
+declare_id!("PASTE_YOUR_PROGRAM_ID");
 
 #[program]
 pub mod escrow {
@@ -34,7 +34,7 @@ pub struct Escrow {
 }
 use anchor_lang::prelude::*;
 
-declare_id!("ВСТАВ_СВІЙ_PROGRAM_ID");
+declare_id!("PASTE_YOUR_PROGRAM_ID");
 
 #[program]
 pub mod escrow {
